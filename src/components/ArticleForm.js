@@ -1,17 +1,21 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ButtonGroup from "./ButtonGroup";
 import { Button, Form } from "react-bootstrap";
 import AddNewText from "./AddNewText";
 import AddNewRichText from "./AddNewRichText";
 import AddNewImage from "./AddNewImage";
 
-const ArticleForm = () => {
+const ArticleForm = ({ articles, setArticles }) => {
   const [content, setContent] = useState([]);
   const [buttonsGroupMode, setButtonsGroupMode] = useState(false);
   const [showTextInput, setShowTextInput] = useState(false);
   const [showRichTextInput, setShowRichTextInput] = useState(false);
   const [showFileInput, setShowFileInput] = useState(false);
+
+  useEffect(()=>{
+      console.log(articles);
+  }, [articles])
 
   const handleAddContent = () => {
     setButtonsGroupMode(true);
@@ -29,6 +33,11 @@ const ArticleForm = () => {
     setShowFileInput(true);
   };
 
+  const handleArticleSubmition = () => {
+    setArticles([...articles, content]);
+    setContent([]);
+  };
+
   return (
     <div className="content">
       <Form>
@@ -40,10 +49,17 @@ const ArticleForm = () => {
             ))}
           </Form.Group>
         )}
-
-        <div className="addContentButton">
-          <Button onClick={handleAddContent}>Add content</Button>
+        <div className="buttons">
+          <div>
+            <Button onClick={handleAddContent}>Add content</Button>
+          </div>
+          {content.length > 0 && (
+            <div>
+              <Button onClick={handleArticleSubmition}>Submit article</Button>
+            </div>
+          )}
         </div>
+
         <br />
         {buttonsGroupMode && (
           <ButtonGroup
