@@ -12,7 +12,7 @@ function App() {
       <>
           <h1>List of your articles</h1>
           {articles.map((article)=>(
-             <Article article={article}/>
+             <Article key={article.id} article={article}/>
            ))}
       </>
       }
