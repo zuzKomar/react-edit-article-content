@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Article = ({ article }) => {
-  const [value, setValue] = useState(article);
-
-  useEffect(()=>{
-        document.getElementById("art").innerHTML = article;
-  },[article])
-
   return (
-    <div className="article">
-      <p id="art">{value}</p>
-    </div>
+    <div className="article" dangerouslySetInnerHTML={{ __html: article }} />
   );
 };
 

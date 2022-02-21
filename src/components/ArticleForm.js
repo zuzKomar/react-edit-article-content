@@ -13,10 +13,6 @@ const ArticleForm = ({ articles, setArticles }) => {
   const [showRichTextInput, setShowRichTextInput] = useState(false);
   const [showFileInput, setShowFileInput] = useState(false);
 
-  useEffect(()=>{
-      console.log(articles);
-  }, [articles])
-
   const handleAddContent = () => {
     setButtonsGroupMode(true);
   };
